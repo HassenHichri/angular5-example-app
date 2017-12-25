@@ -31,7 +31,7 @@ script:
   - npm run lint
   - npm run test
   - npm run e2e
-  - ng build --prod --base-href https://hassenhichri.github.io/angular5-example-app/"
+  - ng build --prod --base-href "https://hassenhichri.github.io/angular5-example-app/"
 
 after_success:
   - if [ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" = "master" ]; then
