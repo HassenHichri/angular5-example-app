@@ -35,7 +35,7 @@ script:
 
 after_success:
   - if [ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" = "master" ]; then
-      angular-cli-ghpages --repo=https://GH_TOKEN@$GH_REPO --name="New release" --email=$EMAIL --no-silent;
+      angular-cli-ghpages --repo=https://github.com/HassenHichri/angular5-example-app.git --name="New release" --email=$EMAIL --no-silent;
     fi
   - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 
