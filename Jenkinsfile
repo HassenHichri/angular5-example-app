@@ -2,16 +2,23 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building..'
-            }
+        stage('NPM Install') {
+                withEnv(["NPM_CONFIG_LOGLEVEL=warn"]) {
+                    sh 'npm install'
+                }
         }
+
+        stage('Lint') {
+                sh 'npm run lint'
+        }
+
         stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
+           withEnv(["CHROME_BIN=/usr/bin/chromium-browser"]) {
+            sh 'npm run test'
+            sh 'npm run e2e'
+                }
         }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
