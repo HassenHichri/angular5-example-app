@@ -1,27 +1,9 @@
 pipeline {
-    agent any
-
+    agent { docker 'node:6.3' }
     stages {
-        stage('NPM Install') {
-                withEnv(["NPM_CONFIG_LOGLEVEL=warn"]) {
-                    sh 'npm install'
-                }
-        }
-
-        stage('Lint') {
-                sh 'npm run lint'
-        }
-
-        stage('Test') {
-           withEnv(["CHROME_BIN=/usr/bin/chromium-browser"]) {
-            sh 'npm run test'
-            sh 'npm run e2e'
-                }
-        }
-
-        stage('Deploy') {
+        stage('build') {
             steps {
-                echo 'Deploying....'
+                sh 'npm --version'
             }
         }
     }
