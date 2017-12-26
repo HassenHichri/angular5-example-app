@@ -15,8 +15,11 @@ node {
         sh "npm install"
     }
 
+    stage('Linting') {
+        sh "npm run lint"
+    }
     stage('unit tests') {
-        sh "ng test --watch false"
+        sh "npm run test"
     }
 
     stage('protractor tests') {
