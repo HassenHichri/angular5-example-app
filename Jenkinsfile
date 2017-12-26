@@ -19,6 +19,10 @@ node {
         sh "npm run lint"
     }
 
+    stage('unit tests') {
+    sh "npm run test"
+    }
+
     stage('protractor tests') {
         sh "npm run e2e"
     }
