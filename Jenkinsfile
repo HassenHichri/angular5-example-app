@@ -1,29 +1,13 @@
-node {
-    def nodeHome = tool name: 'node-8.4.0', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
-    env.PATH = "${nodeHome}/bin:${env.PATH}"
 
-    stage('check tools') {
-        sh "node -v"
-        sh "npm -v"
+pipeline {
+    agent {
+        docker { image 'node:8-alpine' }
     }
-
-    stage('checkout') {
-        checkout scm
-    }
-
-    stage('npm install') {
-        sh "npm install"
-    }
-
-    stage('Linting') {
-        sh "npm run lint"
-    }
-
-    stage('unit tests') {
-    sh "npm run test"
-    }
-
-    stage('protractor tests') {
-        sh "npm run e2e"
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
     }
 }
